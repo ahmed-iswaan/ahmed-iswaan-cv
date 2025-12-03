@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ahmed Iswaan — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
 
 <style>
     /* ------------------------------
@@ -17,18 +20,20 @@
         --muted: #8b949e;
         --primary: #00d9ff;
         --primary-glow: 0 0 18px rgba(0,217,255,0.7);
+        --font-sans: "Inter", system-ui, sans-serif;
+        --font-mono: "Roboto Mono", monospace;
     }
 
     body {
         margin: 0;
-        font-family: "Inter", system-ui, sans-serif;
+        font-family: var(--font-sans);
         background: var(--bg);
         color: var(--text);
         line-height: 1.6;
     }
 
     .container {
-        max-width: 1100px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 40px 20px;
     }
@@ -36,6 +41,16 @@
     h1, h2, h3 {
         font-weight: 700;
         letter-spacing: 0.5px;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #fff;
     }
 
     /* Glass card layout */
@@ -47,6 +62,12 @@
         padding: 30px;
         margin-bottom: 28px;
         box-shadow: 0 0 25px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .header {
@@ -76,29 +97,62 @@
         font-size: 48px;
         font-weight: 700;
         color: var(--primary);
+        transition: transform 0.3s ease;
+    }
+
+    .header:hover .avatar {
+        transform: scale(1.05);
+    }
+
+    .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .tag {
         display: inline-block;
-        padding: 4px 12px;
+        padding: 6px 14px;
         background: rgba(0,217,255,0.1);
-        border: 1px solid var(--primary);
+        border: 1px solid rgba(0,217,255,0.5);
         border-radius: 50px;
         font-size: 12px;
-        margin-right: 5px;
+        margin: 4px;
         color: var(--primary);
+        font-family: var(--font-mono);
+        transition: background 0.3s ease;
+    }
+
+    .tag:hover {
+        background: rgba(0,217,255,0.2);
     }
 
     .section-title {
         font-size: 22px;
-        margin-bottom: 14px;
+        margin-bottom: 20px;
         border-left: 4px solid var(--primary);
         padding-left: 12px;
         font-weight: 700;
     }
 
     .experience-item {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+    }
+    .experience-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
     }
 
     .exp-role {
@@ -113,14 +167,106 @@
     }
 
     .exp-year {
-        float: right;
-        color: var(--muted);
         font-size: 14px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        background: rgba(255,255,255,0.05);
+        padding: 2px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
     }
 
     ul {
-        margin-top: 6px;
+        margin-top: 8px;
+        padding-left: 20px;
+        color: var(--muted);
     }
+    ul li {
+        margin-bottom: 8px;
+    }
+
+    .skills-list {
+        font-size: 13px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        margin-top: 8px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        color: var(--muted);
+    }
+    .contact-item svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+        fill: var(--primary);
+        flex-shrink: 0;
+    }
+
+    .skills-category {
+        margin-bottom: 20px;
+    }
+    .skills-category p:first-of-type {
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .skills-category p:last-of-type {
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 992px) {
+        .grid-container {
+            grid-template-columns: 1fr 2.5fr;
+        }
+        .main-content {
+            order: 2;
+        }
+        .sidebar {
+            order: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px 15px;
+        }
+        .header {
+            padding: 30px 15px;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            font-size: 40px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 18px;
+        }
+        .exp-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .exp-year {
+            margin-top: 5px;
+        }
+    }
+
 </style>
 
 </head>
@@ -129,13 +275,13 @@
 <div class="container">
 
     <!-- HEADER -->
-    <div class="header">
-        <div class="avatar">AI</div>
+    <header class="header">
+        <div class="avatar"><img src="https://lh3.googleusercontent.com/-Jt32_GSYDI0/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkkZVuCqjESynKm7A3QYsj7h5ynX0Q/photo.jpg?sz=150" alt="Ahmed Iswaan"></div>
         <h1 style="margin-bottom: 5px;">Ahmed Iswaan</h1>
         <h3 style="margin-top: 0; color: var(--primary);">
             Senior Software Engineer
         </h3>
-        <p style="max-width: 650px; margin: 10px auto; color: var(--muted);">
+        <p style="max-width: 650px; margin: 15px auto; color: var(--muted);">
             Result-driven Senior Software Engineer experienced in building
             enterprise-level systems for government, corporate, and utility
             organizations. Specialized in full-stack development, APIs,
@@ -143,7 +289,7 @@
             transformation projects.
         </p>
 
-        <div style="margin-top: 10px;">
+        <div style="margin-top: 20px;">
             <span class="tag">Laravel</span>
             <span class="tag">.NET</span>
             <span class="tag">APIs</span>
@@ -151,113 +297,167 @@
             <span class="tag">SQL</span>
             <span class="tag">DevOps</span>
         </div>
+    </header>
+
+    <div class="grid-container">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <!-- CONTACT -->
+            <section class="card">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                    <a href="tel:+9609996759">+960 9996759</a>
+                </div>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+                    <a href="mailto:ahmed.iswaan@gmail.com">ahmed.iswaan@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
+                    <span>Nikahiyaa, AA. Mathiveri, Maldives</span>
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="card">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-category">
+                    <p>Programming / Frameworks</p>
+                    <p>PHP, Laravel, JavaScript, Angular, C++, .NET, Node.js, Python, R</p>
+                </div>
+                <div class="skills-category">
+                    <p>Databases / Tools</p>
+                    <p>MySQL, SQL Server, MongoDB, Redis, REST API, Postman</p>
+                </div>
+                <div class="skills-category">
+                    <p>Infrastructure</p>
+                    <p>Server Setup, Firewalls, VPN, Network Design, Linux, DevOps</p>
+                </div>
+                <div class="skills-category">
+                    <p>Enterprise Systems</p>
+                    <p>ERP, HR & Attendance, SCADA WebSockets, IP PABX</p>
+                </div>
+            </section>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- EXPERIENCE -->
+            <section class="card">
+                <h2 class="section-title">Work Experience</h2>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Senior Software Engineer</div>
+                            <div class="exp-org">Male' Water & Sewerage Company Pvt. Ltd.</div>
+                        </div>
+                        <span class="exp-year">Jun 2024 – Present</span>
+                    </div>
+                    <div class="skills-list">
+                        Skills: Software Infrastructure, Software Design, API Development, and more.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Software Engineer</div>
+                            <div class="exp-org">Male' Water & Sewerage Company Pvt. Ltd.</div>
+                        </div>
+                        <span class="exp-year">Jun 2022 – Jun 2024</span>
+                    </div>
+                     <div class="skills-list">
+                        Skills: .NET Framework, JavaScript, SQL, and more.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Assistant Manager</div>
+                            <div class="exp-org">Fenaka Corporation Ltd</div>
+                        </div>
+                        <span class="exp-year">Nov 2020 – Jun 2022</span>
+                    </div>
+                    <div class="skills-list">
+                        Skills: Project Management, Software Development, Team Leadership.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Senior ICT Technicion</div>
+                            <div class="exp-org">Fenaka Corporation Ltd</div>
+                        </div>
+                        <span class="exp-year">Aug 2018 – Nov 2020</span>
+                    </div>
+                     <div class="skills-list">
+                        Skills: Network Design, System Administration, IT Support.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Lecturer (Part-Time)</div>
+                            <div class="exp-org">Irube Academy</div>
+                        </div>
+                        <span class="exp-year">2021</span>
+                    </div>
+                    <ul>
+                        <li>Taught Software Engineering modules and guided final-year projects.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="card">
+                <h2 class="section-title">Freelance Projects</h2>
+                 <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Full-Stack Developer</div>
+                            <div class="exp-org">Government & Council Projects</div>
+                        </div>
+                        <span class="exp-year">2023 – 2025</span>
+                    </div>
+                    <ul>
+                        <li>Developed National Disability Registry (NSPA).</li>
+                        <li>Built Council Desk Admin & Customer Portals (Mulaku Council).</li>
+                        <li>Completed server upgrades and IT infrastructure modernization.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="card">
+                <h2 class="section-title">Education</h2>
+                <p><strong style="color: var(--primary);">Master’s in Information Technology (Big Data & Data Science)</strong> — Cyrex College (2025)</p>
+                <p><strong>Bachelor’s Degree in IT (Software Engineering)</strong> — Avid College (2021)</p>
+                <p><strong>Associate Degree in IT</strong> — Avid College (2019)</p>
+                <p><strong>Diploma in IT</strong> — Avid College (2018)</p>
+            </section>
+
+            <!-- REFERENCES -->
+            <section class="card">
+                <h2 class="section-title">References</h2>
+                <p><strong>Mohamed Saameen</strong><br>
+                Head of ICT, Fenaka Corporation Limited<br>
+                <a href="tel:7917008">📞 7917008</a> | <a href="mailto:saameen@fenaka.mv">✉️ saameen@fenaka.mv</a></p>
+
+                <p><strong>Asif Mohamed</strong><br>
+                AGM Information Systems, MWSC<br>
+                <a href="tel:9993138">📞 9993138</a> | <a href="mailto:asif@mwsc.com.mv">✉️ asif@mwsc.com.mv</a></p>
+            </section>
+        </main>
     </div>
 
-    <!-- CONTACT -->
-    <div class="card">
-        <div class="section-title">Contact</div>
-        <p>📞 +960 9996759</p>
-        <p>✉️ ahmed.iswaan@gmail.com</p>
-        <p>📍 Nikahiyaa, AA. Mathiveri, Maldives</p>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="card">
-        <div class="section-title">Technical Skills</div>
-
-        <p style="color: var(--primary); font-weight: 600;">Programming / Frameworks</p>
-        <p>PHP, Laravel, JavaScript, Angular, C++, .NET Framework, Node.js, Python, R</p>
-
-        <p style="color: var(--primary); font-weight: 600;">Databases / Tools</p>
-        <p>MySQL, SQL Server, MongoDB, Redis, REST API Design, Postman</p>
-
-        <p style="color: var(--primary); font-weight: 600;">Infrastructure</p>
-        <p>Server Setup, Firewalls, VPN, Network Design, Linux, DevOps Deployment</p>
-
-        <p style="color: var(--primary); font-weight: 600;">Enterprise Systems</p>
-        <p>ERP, HR & Attendance Systems, SCADA WebSockets, IP PABX</p>
-    </div>
-
-    <!-- EXPERIENCE -->
-    <div class="card">
-        <div class="section-title">Work Experience</div>
-
-        <div class="experience-item">
-            <div class="exp-role">
-                Senior Software Engineer
-                <span class="exp-year">2025 – Present</span>
-            </div>
-            <div class="exp-org">Maldives Water and Sewerage Company (MWSC)</div>
-            <ul>
-                <li>Developed enterprise systems such as DMS, Malas Portal, Rent Portal, and Whistleblower Portal.</li>
-                <li>Implemented SCADA WebSocket streaming and API integrations.</li>
-                <li>Designed secure authentication, automation workflows, and internal process systems.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="exp-role">
-                Assistant Manager
-                <span class="exp-year">2018 – 2022</span>
-            </div>
-            <div class="exp-org">Fenaka Corporation Limited</div>
-            <ul>
-                <li>Managed IT operations and network infrastructures across 154 branches.</li>
-                <li>Handled ERP support, server management, and security implementations.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="exp-role">
-                Full-Stack Developer (Freelance)
-                <span class="exp-year">2023 – 2025</span>
-            </div>
-            <div class="exp-org">Government & Council Projects</div>
-            <ul>
-                <li>Developed National Disability Registry (NSPA).</li>
-                <li>Built Council Desk Admin & Customer Portals (Mulaku Council).</li>
-                <li>Completed server upgrades and IT infrastructure modernization.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="exp-role">
-                Lecturer (Part-Time)
-                <span class="exp-year">2021</span>
-            </div>
-            <div class="exp-org">Irube Academy</div>
-            <ul>
-                <li>Taught Software Engineering modules and guided final-year projects.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="card">
-        <div class="section-title">Education</div>
-
-        <p><strong style="color: var(--primary);">Master’s in Information Technology (Big Data & Data Science)</strong> — Cyrex College (2025)</p>
-        <p><strong>Bachelor’s Degree in IT (Software Engineering)</strong> — Avid College (2021)</p>
-        <p><strong>Associate Degree in IT</strong> — Avid College (2019)</p>
-        <p><strong>Diploma in IT</strong> — Avid College (2018)</p>
-    </div>
-
-    <!-- REFERENCES -->
-    <div class="card">
-        <div class="section-title">References</div>
-
-        <p><strong>Mohamed Saameen</strong><br>
-        Head of ICT, Fenaka Corporation Limited<br>
-        📞 7917008 | ✉️ saameen@fenaka.mv</p>
-
-        <p><strong>Asif Mohamed</strong><br>
-        AGM Information Systems, MWSC<br>
-        📞 9993138 | ✉️ asif@mwsc.com.mv</p>
-    </div>
-
-    <p style="text-align:center; margin-top:30px; color: var(--muted); font-size: 13px;">
-        © 2025 · Built by Ahmed Iswaan · Hosted on GitHub Pages
-    </p>
+    <footer style="text-align:center; margin-top:30px; color: var(--muted); font-size: 13px;">
+        © 2025 · Built by Ahmed Iswaan · <a href="https://github.com" target="_blank" rel="noopener noreferrer">Hosted on GitHub Pages</a>
+    </footer>
 
 </div>
 
